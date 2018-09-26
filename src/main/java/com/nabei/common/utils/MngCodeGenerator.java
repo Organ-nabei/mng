@@ -64,9 +64,10 @@ public class MngCodeGenerator {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName(scanner("模块名"));
+        //pc.setModuleName(scanner("模块名"));
         pc.setParent("com.nabei");
         mpg.setPackageInfo(pc);
+
 
         // 自定义配置
         InjectionConfig cfg = new InjectionConfig() {
@@ -80,7 +81,7 @@ public class MngCodeGenerator {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输入文件名称
-                return projectPath + "/src/main/resources/mapper/" + pc.getModuleName()
+                return projectPath + "/src/main/resources/mapper/" + tableInfo.getEntityName()
                         + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
         });
@@ -92,7 +93,6 @@ public class MngCodeGenerator {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-        strategy.setSuperEntityClass("java.io.Serializable");
         //strategy.setSuperEntityClass("com.baomidou.ant.common.BaseEntity");
         //strategy.setEntityLombokModel(true);
         strategy.setRestControllerStyle(true);
@@ -100,7 +100,7 @@ public class MngCodeGenerator {
         strategy.setInclude(scanner("表名"));
         //strategy.setSuperEntityColumns("id");
         strategy.setControllerMappingHyphenStyle(true);
-        strategy.setTablePrefix(pc.getModuleName() + "_");
+        //strategy.setTablePrefix(pc.getModuleName() + "_");
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         mpg.execute();

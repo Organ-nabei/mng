@@ -1,5 +1,6 @@
 package com.nabei.common.aspect;
 
+import com.nabei.common.utils.FaJsonUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -13,6 +14,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
+import java.util.Map;
 
 @Aspect
 @Configuration
@@ -28,17 +30,16 @@ public class MngWebLogAspect {
         // 接收到请求，记录请求内容
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
-
+        String params = FaJsonUtils.objToString(request.getParameterMap());
         // 记录下请求内容
-        logger.warn("request:{URL:"+ request.getRequestURL().toString()+"HTTP_METHOD:"+request.getMethod()+",IP:"+ request.getRemoteAddr()
-                +",CLASS_METHOD : " + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName()
-                +",ARGS : " + Arrays.toString(joinPoint.getArgs())+"}");
+        logger.warn("request:{URL:"+ request.getRequestURL().toString()+":,ActionName : " + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName()
+                +",params:"+params+"}");
     }
 
-    @AfterReturning(returning = "ret", pointcut = "webLog()")
-    public void doAfterReturning(Object ret) throws Throwable {
+    @AfterReturning(returning = "response", pointcut = "webLog()")
+    public void doAfterReturning(Object response) throws Throwable {
         // 处理完请求，返回内容
-        logger.info("reponse:{"+ret+"}");
+        logger.info("reponse:"+response+"");
     }
 
 
