@@ -59,7 +59,7 @@ public class MngCodeGenerator {
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("root");
+        dsc.setPassword("nb@123");
         mpg.setDataSource(dsc);
 
         // 包配置

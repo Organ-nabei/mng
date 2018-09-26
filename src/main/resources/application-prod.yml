@@ -63,4 +63,6 @@ mybatis-plus:
       call-setters-on-nulls: true
 mng:
   redis:
-    open: true #是否开启redis缓存
+    open: true
+logging:
+  config: classpath:conf/logback-prod.xml

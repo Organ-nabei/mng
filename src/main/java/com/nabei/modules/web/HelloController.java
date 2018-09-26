@@ -18,7 +18,7 @@ public class HelloController {
     @GetMapping("index")
     public Response index(){
         Object obj  = redisUtils.get("APP-MNG_DELIVER_INFO_36");
-        return Response.getSuccessResponse();
+        return Response.getSuccessResponse(obj);
     }
 
 }
