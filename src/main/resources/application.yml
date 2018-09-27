@@ -6,6 +6,7 @@ server:
   connection-timeout: 5000ms
   servlet:
     context-path: /mng
+  port: 8001
 spring:
   profiles:
     active: dev
