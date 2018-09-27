@@ -81,7 +81,7 @@ public class MngCodeGenerator {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输入文件名称
-                return projectPath + "/src/main/resources/mapper/" + tableInfo.getEntityName()
+                return projectPath + "/src/main/resources/mapper/" + tableInfo.getEntityName().toLowerCase()
                         + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
         });
