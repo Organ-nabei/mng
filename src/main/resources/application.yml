@@ -1,0 +1,51 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
+  connection-timeout: 5000ms
+  servlet:
+    context-path: /mng
+spring:
+  profiles:
+    active: dev
+  #请求编码设置
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  mvc:
+    throw-exception-if-no-handler-found: true #出现异常全部去到统一异常配置中
+    resources:
+      add-mappings: false #不需要帮我们自动映射
+#mybatis plus 插件
+mybatis-plus:
+  #扫描resources下的xml文件
+  mapper-locations: classpath:mapper/**/*.xml
+  #类别名
+  type-aliases-package: com.nabei.modules.entity
+  global-config:
+    #此配置不推荐在生成环境中使用,用于修改mapper.xml文件不用重启
+    refresh: true
+    #db-config:
+      #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+      #id-type:
+      #逻辑删除
+      #logic-delete-value: -1
+      #logic-not-delete-value: 0
+      #字段策略
+      #field-strategy: not_empty
+  configuration:
+    #驼峰下划线转换
+    map-underscore-to-camel-case: true
+    #缓存关闭
+    cache-enabled: false
+    call-setters-on-nulls: true
+#项目内部配置
+mng:
+  redis:
+    open: true
+  interceptor:
+    include: /auth/hello
+    exclude: /auth/hello

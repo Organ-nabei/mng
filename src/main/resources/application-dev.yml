@@ -1,12 +1,3 @@
-server:
-  tomcat:
-    uri-encoding: UTF-8
-    max-threads: 1000
-    min-spare-threads: 30
-  port: 8002
-  connection-timeout: 5000ms
-  servlet:
-    context-path: /mng
 spring:
   #数据源配置
   datasource:
@@ -16,12 +7,6 @@ spring:
       password: nb@123
       driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-  #请求编码设置
-  http:
-    encoding:
-      charset: UTF-8
-      enabled: true
-      force: true
   #Redis
   redis:
     database: 0
@@ -35,37 +20,5 @@ spring:
         max-wait: -1ms # 连接池最大阻塞等待时间（使用负值表示没有限制）
         max-idle: 10 # 连接池中的最大空闲连接
         min-idle: 5 # 连接池中的最小空闲连接
-  mvc:
-    throw-exception-if-no-handler-found: true #出现异常全部去到统一异常配置中
-  resources:
-    add-mappings: false #不需要帮我们自动映射
-mybatis-plus:
-  #扫描resources下的xml文件
-    mapper-locations: classpath:mapper/**/*.xml
-    #类别名
-    type-aliases-package: com.nabei.modules.entity
-    global-config:
-      #此配置不推荐在生成环境中使用,用于修改mapper.xml文件不用重启
-      refresh: true
-      #db-config:
-        #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
-        #id-type:
-        #逻辑删除
-        #logic-delete-value: -1
-        #logic-not-delete-value: 0
-        #字段策略
-        #field-strategy: not_empty
-    configuration:
-      #驼峰下划线转换
-      map-underscore-to-camel-case: true
-      #缓存关闭
-      cache-enabled: false
-      call-setters-on-nulls: true
-mng:
-  redis:
-    open: true
-  interceptor:
-    include: /auth/hello
-    exclude: /auth/hello
 logging:
   config: classpath:conf/logback-dev.xml
