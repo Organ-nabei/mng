@@ -1,4 +1,4 @@
-package com.nabei.modules.web;
+package com.nabei.controller.hello;
 
 
 import com.nabei.common.utils.RedisUtils;
@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
-@RequestMapping("/web/hello")
+@RequestMapping("/auth/hello")
 public class HelloController {
 
     @Autowired

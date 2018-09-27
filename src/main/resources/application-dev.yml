@@ -64,5 +64,8 @@ mybatis-plus:
 mng:
   redis:
     open: true
+  interceptor:
+    include: /auth/hello
+    exclude: /auth/hello
 logging:
   config: classpath:conf/logback-dev.xml
